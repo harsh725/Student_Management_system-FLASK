@@ -1,0 +1,39 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+    <title>Login Form</title>    
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css">  -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">   
+</head>    
+<body>    
+
+      {% if status=="error" %}
+      <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> Incorrect Username or Password.
+  </div>
+    {% elif status=="Moderator" or status=="Admin" %}
+      <div class="alert alert-success">
+  <strong>Success!</strong> <strong>{{status}} </strong>>logged in succesfully.
+</div>
+    {% endif %}
+
+
+    <h2>Login Page</h2><br>    
+    <div class="login">    
+    <form method="post" action="/">    
+        <label><b>User Name</b>    
+        </label>    
+        <input type="text" name="Uname" id="Uname" placeholder="Username" required>    
+        <br><br>    
+        <label><b>Password  </b>    
+        </label>    
+        <input type="Password" name="Pass" id="Pass" placeholder="Password" required>    
+        <br><br>    
+        <input type="submit" name="log" id="log" value="Log In Here">       
+        <br><br>    
+           
+    </form>     
+</div>    
+</body>    
+</html>  
