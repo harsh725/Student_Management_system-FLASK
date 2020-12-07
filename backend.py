@@ -2,9 +2,9 @@ import sqlite3
 def studentData():
     con=sqlite3.connect("student.db")
     cur=con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS student(usn INTEGER PRIMARY KEY,
+    cur.execute("""CREATE TABLE IF NOT EXISTS student(usn TEXT PRIMARY KEY,
         name TEXT,
-        mobileno INTEGER,
+        mobileno TEXT,
         address TEXT,
         email TEXT)""")
     con.commit()
@@ -13,7 +13,9 @@ studentData()
 def addstdrec(usn,name,mobileno,address,email):
     con=sqlite3.connect("student.db")
     cur=con.cursor()
+    print("testtttt========",type(usn),type(name),type(mobileno),type(address),type(email))
     cur.execute("""INSERT INTO student VALUES (:usn,:name,:mobileno,:address,:email)""",{'usn':usn,'name':name,'mobileno':mobileno,'address':address,'email':email})
+    print("000000000000000000000000000")
     con.commit()
     con.close()
 
@@ -24,7 +26,8 @@ def viewdatastud():
     rows=cur.fetchall()
     con.close()
     return rows
-
+# addstdrec("1CR18CS","harsh","875814979","india","a@b.com")
+print(viewdatastud(),"------------------")
 
 def deletestdrec(usn):
     con=sqlite3.connect("student.db")
@@ -74,7 +77,7 @@ def viewmoderator():
     con.close()
     return rows
 
-print(viewmoderator())
+# print(viewmoderator())
 def deleterecmoderator(idm):
      con=sqlite3.connect("student.db")
      cur=con.cursor()
@@ -98,22 +101,22 @@ def updaterecmoderator(idm,namem,password,emailm,contactno):
 def feedata():
     con=sqlite3.connect("student.db")
     cur=con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS fee(usn INTEGER PRIMARY KEY,
-    amount INTEGER,
+    cur.execute("""CREATE TABLE IF NOT EXISTS fee(usn TEXT PRIMARY KEY,
+    amount TEXT,
     status TEXT,
-    date DATE,
+    payment_date TEXT,
     penalty TEXT)""")
     con.commit()
     con.close()
 
-
-def addfeedetails(usn,amount,status,date,penalty):
+feedata()
+def addfeedetails(usn,amount,status,payment_date,penalty):
      con=sqlite3.connect("student.db")
      cur=con.cursor()
-     cur.execute("""INSERT INTO fee VALUES (:usn,:amount,:status,:date,:penalty)""",{'usn':usn,'amount':amount,'status':status,'date':date,'penalty':penalty})
+     cur.execute(""" INSERT INTO fee VALUES(:usn,:amount,:status,:payment_date,:penalty) """, {'usn':usn,'amount':amount,'status':status,'payment_date':payment_date,'penalty':penalty} )
      con.commit()
      con.close()
-
+# addfeedetails("1CR18CS","50000","PAID","25-JULY","NHI LAGI")
 def viewfeedetails():
      con=sqlite3.connect("student.db")
      cur=con.cursor()
@@ -121,7 +124,7 @@ def viewfeedetails():
      rows=cur.fetchall()
      con.close()
      return rows
-
+# print(viewfeedetails())
 
 
 def deletefeerec(usn):
@@ -144,7 +147,7 @@ def updatefeerec(usn,amount,status,date,penalty):
 def subjectdata():
      con=sqlite3.connect("student.db")
      cur=con.cursor()
-     cur.execute("""CREATE TABLE IF NOT EXISTS subject(usn INTEGER PRIMARY KEY,
+     cur.execute("""CREATE TABLE IF NOT EXISTS subject(usn TEXT PRIMARY KEY,
      sub1 TEXT,
      sub2 TEXT,
      sub3 TEXT,
@@ -190,7 +193,7 @@ def updaterecsubject(usn,sub1,sub2,sub3,backlogs):
 def performancedata():
      con=sqlite3.connect("student.db")
      cur=con.cursor()
-     cur.execute("""CREATE TABLE IF NOT EXISTS performance(usn INTEGER PRIMARY KEY,
+     cur.execute("""CREATE TABLE IF NOT EXISTS performance(usn TEXT PRIMARY KEY,
      iat1 INTEGER,
      iat2 INTEGER,
      iat3 INTEGER,
@@ -201,3 +204,4 @@ def performancedata():
      con.close()
 
 
+performancedata()
