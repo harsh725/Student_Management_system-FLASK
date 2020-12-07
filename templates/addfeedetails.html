@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<title></title>
+<style>
+body
+{
+	background-color:#00FFFF;
+}
+</style>	
+</head>
+<body>
+
+  {% if status=="error" %}
+      <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> Something went wrong.
+  </div>
+    {% elif status=="success"%}
+      <div class="alert alert-success">
+  <strong>Success!</strong> Fees Details has been added.
+</div>
+    {% endif %}
+
+
+    <div><center>ADD FEES DETAILS</center></div>
+	<div class="row">
+    <div class="col-6"><form action="/addfeedetails" method="post">
+  <div class="form-group">
+    <label for="usnno">Usn</label>
+    <input type="text" class="form-control" id="usnno" name="usnno"  placeholder="Enter Usn">
+  </div>
+  <div class="form-group">
+    <label for="inputname">Amount</label>
+    <input type="text" class="form-control" id="inputname" name="inputname" placeholder="Enter Amount">
+  </div>
+  <div class="form-group">
+    <label for="num">Status</label>
+    <input type="text" class="form-control" id="num" name="num" placeholder="Enter Status">
+  </div>
+  <div class="form-group">
+    <label for="add">Date</label>
+    <input type="date" class="form-control" id="add" name="add" placeholder="Enter Date">
+  </div>
+  <div class="form-group">
+    <label for="pe">Penalty</label>
+    <input type="text" class="form-control" id="pe" name="pe" placeholder="Enter Penalty">
+  </div>
+  <button type="submit">ADD</button>
+  </form>
+     </div>
+	</div>
+</body>
+</html>

@@ -43,15 +43,27 @@ def add_student():
 	if request.method=="POST":
 		usn=request.form['usnno']
 		name=request.form['inputname']
+<<<<<<< HEAD
 		# paswd=request.form['exampleInputPassword1']
 		add=request.form['add']
 		mail=request.form['exampleInputEmail1']
 		phone=request.form['num']
+=======
+		print(request.form)
+		add=request.form['add']
+		mail=request.form['exampleInputEmail1']
+		phone=request.form['num']
+		print(usn,name,add,mail,phone)
+>>>>>>> main
 		try:
 			addstdrec(usn,name,phone,add,mail)
 			return render_template('add_student.html',status="ok")
 		except Exception as e:
+<<<<<<< HEAD
 			print("check1**********************************************")
+=======
+			print("check1**********************************************",e)
+>>>>>>> main
 			return render_template('add_student.html',status="error")
 
 	return render_template('add_student.html',status="")
@@ -90,6 +102,7 @@ def modesection():
 
 @app.route('/addfeedetails',methods=["POST","GET"])
 def addfees():
+<<<<<<< HEAD
 	return render_template('addfeedetails.html')
 
 
@@ -97,6 +110,35 @@ def addfees():
 def performance():
 	return render_template('performance.html')
 
+=======
+	if request.method=="POST":
+		usn=request.form['usnno']
+		ammt=int(request.form['inputname'])
+		sts=request.form['num']
+		date=request.form['add']
+		penalty=request.form['pe']
+
+		try:
+			addfeedetails(usn,int(ammt),sts,str(date),penalty)
+			print(type(usn),type(ammt),type(sts),type(date),type(penalty))
+			return render_template('addfeedetails.html',status="success")
+
+		except Exception as e:
+			print(type(usn),type(ammt),type(sts),type(date),type(penalty))
+			print(e,"============================")
+			return render_template('addfeedetails.html',status="error")
+
+			
+	return render_template('addfeedetails.html',status="get")
+
+@app.route('/performance',methods=["POST","GET"])
+def performance():
+	return render_template('performance.html')
+
+@app.route('/view_data')
+def view_stud():
+	return render_template('view.html')
+>>>>>>> main
 
 @app.route('/viewmoddata',methods=["POST","GET"])
 def view_mod_data():
@@ -108,10 +150,17 @@ def view_mod_data():
 	return render_template('view_mod.html',data=[])
 
 
+<<<<<<< HEAD
 
 @app.route('/score')
 def score():
 	return render_template('scores.html')
+=======
+@app.route('/view_fees_details')
+def view_fees():
+	lst=viewfeedetails()
+	return render_template('view_fees.html',data=lst,lenght=len(lst))
+>>>>>>> main
 
 
 # @app.route('/viewdata',methods=["POST","GET"])

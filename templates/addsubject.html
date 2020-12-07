@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<title></title>
+<style>
+body
+{
+  background-color:#6abadeba;
+}
+alert alert-danger alert-dismissible {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+alert alert-success {
+  padding: 20px;
+  background-color: "green"; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+</style>  	
+</head>
+<body>
+
+  {% if status=="error" %}
+      <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> This student already exist.
+  </div>
+    {% elif status=="ok"%}
+      <div class="alert alert-success">
+  <strong>Success!</strong> Data entered succesfully.
+</div>
+    {% endif %}
+
+    <div><center>ADD SUBJECTS</center></div>
+	<div class="row">
+    <div class="col-6"><form action="#" method="post">
+  <div class="form-group">
+    <label for="usnno">Usn</label>
+    <input type="text" class="form-control" id="usnno" name='usnno' placeholder="Enter Usn">
+  </div>
+  <div class="form-group">
+    <label for="inputname">Subject1</label>
+    <input type="text" class="form-control" id="inputname" name='inputname' placeholder="Enter Subject1">
+  </div>
+  <div class="form-group">
+    <label for="num">Subject2</label>
+    <input type="text" class="form-control" id="num" name='num' placeholder="Enter Subject2">
+  </div>
+  <div class="form-group">
+    <label for="nu">Subject3</label>
+    <input type="text" class="form-control" id="nu" name='nu' placeholder="Enter Subject3">
+  </div>
+  <div class="form-group">
+    <label for="pe">Backlogs</label>
+    <input type="text" class="form-control" id="pe" name="pe" placeholder="Enter Backlogs">
+  </div>
+  <button type="submit">ADD</button>
+  </form>
+     </div>
+	</div>
+</body>
+</html>
