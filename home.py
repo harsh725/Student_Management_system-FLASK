@@ -43,27 +43,27 @@ def add_student():
 	if request.method=="POST":
 		usn=request.form['usnno']
 		name=request.form['inputname']
-<<<<<<< HEAD
+
 		# paswd=request.form['exampleInputPassword1']
 		add=request.form['add']
 		mail=request.form['exampleInputEmail1']
 		phone=request.form['num']
-=======
+
 		print(request.form)
 		add=request.form['add']
 		mail=request.form['exampleInputEmail1']
 		phone=request.form['num']
 		print(usn,name,add,mail,phone)
->>>>>>> main
+
 		try:
 			addstdrec(usn,name,phone,add,mail)
 			return render_template('add_student.html',status="ok")
 		except Exception as e:
-<<<<<<< HEAD
+
 			print("check1**********************************************")
-=======
+
 			print("check1**********************************************",e)
->>>>>>> main
+
 			return render_template('add_student.html',status="error")
 
 	return render_template('add_student.html',status="")
@@ -93,24 +93,9 @@ def moderator():
 
 	return render_template('add_mod.html',msg="GET")
 
-@app.route('/moderator_section',methods=["POST","GET"])
-def modesection():
-	nam="Moderator"
-	if request.method=="POST":
-		nam=str(request.form['Uname'])
-	return render_template('moderator_section.html',mode=nam)
 
 @app.route('/addfeedetails',methods=["POST","GET"])
-def addfees():
-<<<<<<< HEAD
-	return render_template('addfeedetails.html')
-
-
-@app.route('/performance')
-def performance():
-	return render_template('performance.html')
-
-=======
+def add_fee_details():
 	if request.method=="POST":
 		usn=request.form['usnno']
 		ammt=int(request.form['inputname'])
@@ -131,14 +116,29 @@ def performance():
 			
 	return render_template('addfeedetails.html',status="get")
 
-@app.route('/performance',methods=["POST","GET"])
+
+@app.route('/moderator_section',methods=["POST","GET"])
+def modesection():
+	nam="Moderator"
+	if request.method=="POST":
+		nam=str(request.form['Uname'])
+	return render_template('moderator_section.html',mode=nam)
+
+
+
+@app.route('/performance')
 def performance():
 	return render_template('performance.html')
 
 @app.route('/view_data')
 def view_stud():
 	return render_template('view.html')
->>>>>>> main
+
+@app.route('/view_std_data')
+def view_std_data():
+	lst=viewdatastud()
+	print("**********************************")
+	return render_template('view_std_data.html',data=lst,lenght=len(lst))
 
 @app.route('/viewmoddata',methods=["POST","GET"])
 def view_mod_data():
@@ -149,18 +149,18 @@ def view_mod_data():
 
 	return render_template('view_mod.html',data=[])
 
-
-<<<<<<< HEAD
-
+@app.route('/view_sub_data')
+def view_subject():
+	lst=viewsubject()
+	return render_template('view_subject.html',data=lst,lenght=len(lst))
 @app.route('/score')
 def score():
 	return render_template('scores.html')
-=======
+
 @app.route('/view_fees_details')
 def view_fees():
 	lst=viewfeedetails()
 	return render_template('view_fees.html',data=lst,lenght=len(lst))
->>>>>>> main
 
 
 # @app.route('/viewdata',methods=["POST","GET"])
