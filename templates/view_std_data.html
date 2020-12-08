@@ -41,6 +41,14 @@
       
     
   </tbody>
+
+  <select class="custom-select custom-select-lg mb-3" width="5" >
+  <option selected>Select USN to Delete</option>
+  {% for j in range(lenght) %}
+    <option value="{{j+1}}">{{data[j][0]}}</option>
+  {% endfor %}
+  
+</select>
 </table>
 
  
