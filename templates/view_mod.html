@@ -7,6 +7,19 @@
 </head>
 <body>
 
+<form method="post" action="/viewmoddata">
+  <select name="mod_del" class="custom-select custom-select-lg mb-3" style="width: 25%;"  >
+  <option selected>Select Moderator to Delete</option>
+  {% for j in range(lenght) %}
+    <option>{{data[j][0]}}</option>
+  {% endfor %}
+  
+</select>
+<button class="btn btn-danger mx-2 mb-3 px-3 py-2" >DELETE</button>
+</form>
+
+
+
 <table class="table">
   <thead class="thead-dark">
     <tr>

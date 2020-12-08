@@ -1,3 +1,5 @@
+# FOREGIN KEY, triger ,phone digit, cascade,regex
+
 import sqlite3
 def studentData():
     con=sqlite3.connect("student.db")
@@ -81,7 +83,7 @@ def viewmoderator():
 def deleterecmoderator(idm):
      con=sqlite3.connect("student.db")
      cur=con.cursor()
-     cur.execute("DELETE FROM moderator WHERE idm=:idm",{'idm':idm})
+     cur.execute("DELETE FROM moderator WHERE usr=:idm",{'idm':idm})
      con.commit()
      con.close()
 

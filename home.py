@@ -3,6 +3,7 @@ from backend import *
 app=Flask(__name__)
 
 
+
 @app.route("/",methods=["POST","GET"])
 def home():
 	if request.method=="POST":
@@ -20,6 +21,7 @@ def home():
 
 			return render_template('index.html',status="error")
 	return render_template('index.html',status='get')
+
 
 @app.route('/addsubject',methods=["POST","GET"])
 def add_subject():
@@ -134,25 +136,48 @@ def performance():
 def view_stud():
 	return render_template('view.html')
 
-@app.route('/view_std_data')
+
+
+# @app.route('/temp')
+# def temp_std_data():
+# 	return redirect(url_for('view_std_data',flag="del"))
+
+
+
+@app.route('/view_std_data',methods=["POST","GET"])
 def view_std_data():
+	
+	if request.method=="POST":
+		print(request.form)
+		usn=request.form['usn_del']
+		deletestdrec(usn)
 	lst=viewdatastud()
-	print("**********************************")
 	return render_template('view_std_data.html',data=lst,lenght=len(lst))
+
+	print("**********************************")
+	
 
 @app.route('/viewmoddata',methods=["POST","GET"])
 def view_mod_data():
 	print("check1==================================",viewmoderator())
 
 	if request.method=="POST":
-		return render_template('view_mod.html',data=viewmoderator())
+		mod=request.form['mod_del']
+		print(mod,"==============")
+		deleterecmoderator(mod)
 
-	return render_template('view_mod.html',data=[])
+		
+	lst=viewmoderator()
+	return render_template('view_mod.html',data=lst,lenght=len(lst))
+
+	
 
 @app.route('/view_sub_data')
 def view_subject():
 	lst=viewsubject()
 	return render_template('view_subject.html',data=lst,lenght=len(lst))
+
+
 @app.route('/score')
 def score():
 	return render_template('scores.html')

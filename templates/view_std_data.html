@@ -8,6 +8,22 @@
 <body>
   <strong><h1>Student Details</h1></strong>
 
+
+
+<form method="post" action="/view_std_data">
+  <select name="usn_del" class="custom-select custom-select-lg mb-3" style="width: 25%;"  >
+  <option selected>Select USN to Delete</option>
+  {% for j in range(lenght) %}
+    <option>{{data[j][0]}}</option>
+  {% endfor %}
+  
+</select>
+<button class="btn btn-danger mx-2 mb-3 px-3 py-2" >DELETE</button>
+</form>
+
+
+
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -17,6 +33,7 @@
       <th scope="col">Phone</th>
       <th scope="col">ADDRESS</th>
       <th scope="col">Email</th>
+      
       
       <!-- <th scope="col">Handle</th> -->
     </tr>
@@ -33,6 +50,7 @@
     		{% for i in range(5)%}
     			<td>{{data[j][i]}}</td>
     		{%endfor%}
+        
 
     		</tr>		
     	{% endfor %}
@@ -42,18 +60,7 @@
     
   </tbody>
 
-  <select class="custom-select custom-select-lg mb-3" width="5" >
-  <option selected>Select USN to Delete</option>
-  {% for j in range(lenght) %}
-    <option value="{{j+1}}">{{data[j][0]}}</option>
-  {% endfor %}
-  
-</select>
 </table>
-
- 
-
-
 
 
 
