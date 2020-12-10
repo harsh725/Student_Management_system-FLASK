@@ -3,6 +3,7 @@ from backend import *
 app=Flask(__name__)
 
 
+
 @app.route("/",methods=["POST","GET"])
 def home():
 	if request.method=="POST":
@@ -20,6 +21,7 @@ def home():
 
 			return render_template('index.html',status="error")
 	return render_template('index.html',status='get')
+
 
 @app.route('/addsubject',methods=["POST","GET"])
 def add_subject():
@@ -43,16 +45,27 @@ def add_student():
 	if request.method=="POST":
 		usn=request.form['usnno']
 		name=request.form['inputname']
+
+		# paswd=request.form['exampleInputPassword1']
+		add=request.form['add']
+		mail=request.form['exampleInputEmail1']
+		phone=request.form['num']
+
 		print(request.form)
 		add=request.form['add']
 		mail=request.form['exampleInputEmail1']
 		phone=request.form['num']
 		print(usn,name,add,mail,phone)
+
 		try:
 			addstdrec(usn,name,phone,add,mail)
 			return render_template('add_student.html',status="ok")
 		except Exception as e:
+
+			print("check1**********************************************")
+
 			print("check1**********************************************",e)
+
 			return render_template('add_student.html',status="error")
 
 	return render_template('add_student.html',status="")
@@ -82,15 +95,9 @@ def moderator():
 
 	return render_template('add_mod.html',msg="GET")
 
-@app.route('/moderator_section',methods=["POST","GET"])
-def modesection():
-	nam="Moderator"
-	if request.method=="POST":
-		nam=str(request.form['Uname'])
-	return render_template('moderator_section.html',mode=nam)
 
 @app.route('/addfeedetails',methods=["POST","GET"])
-def addfees():
+def add_fee_details():
 	if request.method=="POST":
 		usn=request.form['usnno']
 		ammt=int(request.form['inputname'])
@@ -111,7 +118,17 @@ def addfees():
 			
 	return render_template('addfeedetails.html',status="get")
 
-@app.route('/performance',methods=["POST","GET"])
+
+@app.route('/moderator_section',methods=["POST","GET"])
+def modesection():
+	nam="Moderator"
+	if request.method=="POST":
+		nam=str(request.form['Uname'])
+	return render_template('moderator_section.html',mode=nam)
+
+
+
+@app.route('/performance')
 def performance():
 	return render_template('performance.html')
 
@@ -119,15 +136,51 @@ def performance():
 def view_stud():
 	return render_template('view.html')
 
+
+
+# @app.route('/temp')
+# def temp_std_data():
+# 	return redirect(url_for('view_std_data',flag="del"))
+
+
+
+@app.route('/view_std_data',methods=["POST","GET"])
+def view_std_data():
+	
+	if request.method=="POST":
+		print(request.form)
+		usn=request.form['usn_del']
+		deletestdrec(usn)
+	lst=viewdatastud()
+	return render_template('view_std_data.html',data=lst,lenght=len(lst))
+
+	print("**********************************")
+	
+
 @app.route('/viewmoddata',methods=["POST","GET"])
 def view_mod_data():
 	print("check1==================================",viewmoderator())
 
 	if request.method=="POST":
-		return render_template('view_mod.html',data=viewmoderator())
+		mod=request.form['mod_del']
+		print(mod,"==============")
+		deleterecmoderator(mod)
 
-	return render_template('view_mod.html',data=[])
+		
+	lst=viewmoderator()
+	return render_template('view_mod.html',data=lst,lenght=len(lst))
 
+	
+
+@app.route('/view_sub_data')
+def view_subject():
+	lst=viewsubject()
+	return render_template('view_subject.html',data=lst,lenght=len(lst))
+
+
+@app.route('/score')
+def score():
+	return render_template('scores.html')
 
 @app.route('/view_fees_details')
 def view_fees():
