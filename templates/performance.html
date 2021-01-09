@@ -4,116 +4,53 @@
   
 </head>
 <body>
+
+
+
 <div><strong>Result</strong></div>
 <div>       </div>
 <div><strong>Performance</strong></div>
-<table>
+
+<a href="/moderator_section" class="btn btn-outline-dark btn-lg"> <button>Back</button></a>
+
 <table class="table">
   <caption>List of users</caption>
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">USN</th>
+      <th scope="col">IAT-1</th>
+      <th scope="col">IAT-2</th>
+      <th scope="col">IAT-3</th>
+      <th scope="col">Average</th>
+      <th scope="col">Externals</th>
+      <th scope="col">Total</th>
     </tr>
   </thead>
   <tbody>
+
+
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      {% for j in range(lenght) %}
+        <tr>
+
+          <td>{{j+1}}</td>
+          
+        {% for i in range(7)%}
+          <td>{{data[j][i]}}</td>
+        {%endfor%}
+        
+
+        </tr>   
+      {% endfor %}
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+      
+      
+    
   </tbody>
 </table>
 
 
-  <tr>
-    <th>IAT1</th>
-    <th>IAT2</th>
-    <th>IAT3</th>
-    <th>Average</th>
-    <th>External</th>
-    <th>Total</th>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-  <tr>
-    <td>10</td>
-    <td>10</td>
-    <td>10</td>
-    <td>3</td>
-    <td>80</td>
-    <td>100</td>
-  </tr>
-</table>
 
 
 

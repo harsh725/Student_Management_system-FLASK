@@ -39,15 +39,26 @@ alert alert-success {
       <div class="alert alert-success">
   <strong>Success!</strong> Data entered succesfully.
 </div>
+    
     {% endif %}
+
+
 
     <div><center>ADD SUBJECTS</center></div>
 	<div class="row">
-    <div class="col-6"><form action="#" method="post">
-  <div class="form-group">
+    <div class="col-6">
+      <form action="#" method="post">
+  <!-- <div class="form-group">
     <label for="usnno">Usn</label>
     <input type="text" class="form-control" id="usnno" name='usnno' placeholder="Enter Usn">
-  </div>
+  </div> -->
+  <select name="mod_del" class="custom-select custom-select-lg mb-3" style="width: 25%;"  >
+  <option selected>Select USN</option>
+  {% for j in range(lenght) %}
+    <option>{{data[j][0]}}</option>
+  {% endfor %}
+  
+</select>
   <div class="form-group">
     <label for="inputname">Subject1</label>
     <input type="text" class="form-control" id="inputname" name='inputname' placeholder="Enter Subject1">

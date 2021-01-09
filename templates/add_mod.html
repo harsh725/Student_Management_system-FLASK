@@ -35,6 +35,11 @@ alert alert-success {
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Warning!</strong> This ID is already taken , Enter a Unique ID.
   </div>
+  {% elif msg=="phone" %}
+      <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> Invalid Phone number.
+  </div>
     {% elif msg=="success"%}
       <div class="alert alert-success">
   <strong>Success!</strong> New Moderator has been added.
@@ -64,6 +69,7 @@ alert alert-success {
     <input type="text" class="form-control" name="num" id="num"  placeholder="Enter contact no.">
   </div>
   <button type="submit">ADD</button>
+  <!-- <button type="submit">BACK</button> -->
   <button type="submit" formaction="{{url_for('home')}}" formmethod="get">Back</button>
   </form>
      </div>

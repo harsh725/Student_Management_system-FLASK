@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<title>Add/Update marks</title>
+<style>
+body
+{
+	background-color:#00FFFF;
+}
+</style>	
+</head>
+<body>
+  {% if status=="error" %}
+      <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> This student already exist.
+  </div>
+  {% elif status=="Phone" %}
+      <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> Invalid Phone number.
+  </div>
+    {% elif status=="ok"%}
+      <div class="alert alert-success">
+  <strong>Success!</strong> Student has been added.
+</div>
+    {% endif %}
+
+
+
+<form action="/add_marks" method="POST">
+<select name="usnno" class="custom-select custom-select-lg mb-3" style="width: 25%;"  >
+  <option selected>Select USN</option>
+  {% for j in range(lenght) %}
+    <option>{{data[j][0]}}</option>
+  {% endfor %}
+  
+</select>
+
+
+
+  <div class="form-group">
+    <label for="num">IAT-1</label>
+    <input type="number" min="0" class="form-control" name="num1" placeholder="Enter IAT-1 Marks">
+
+    <label for="num">IAT-2</label>
+    <input type="number" min="0" class="form-control" name="num2" placeholder="Enter IAT-2 Marks">
+    
+    <label for="num">IAT-3</label>
+    <input type="number" min="0" class="form-control" name="num3" placeholder="Enter IAT-3 Marks">
+    
+    <label for="num">External</label>
+    <input type="number" min="0" class="form-control" name="ex" placeholder="Enter External Marks">
+    
+  </div>
+  <form>
+  <button type="submit" formaction="/add_marks" formmethod="POST">ADD</button>
+  <button type="submit" formaction="/moderator_section" formmethod="get">Back</button>
+  </form>
+     </div>
+	</div>
+</body>
+</html>
