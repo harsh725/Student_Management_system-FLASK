@@ -139,8 +139,10 @@ def addmarks():
 	iat3=request.form['num3']
 	ex=int(request.form['ex'])
 	avg=(int(iat1)+int(iat2)+int(iat3))
-	avg//=3
-	total=ex+avg
+	# avg=0
+	print(ex,avg)
+	# avg//=3
+	total=0
 	print("testing2=========")
 	try:
 		addmark(usn,int(iat1),int(iat2),int(iat3),int(ex),int(avg),int(total))
