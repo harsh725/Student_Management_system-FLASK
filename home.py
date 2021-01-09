@@ -25,19 +25,20 @@ def home():
 
 @app.route('/addsubject',methods=["POST","GET"])
 def add_subject():
+	lst=viewdatastud()
 	if request.method=="POST":
-		usn=request.form['usnno']
+		usn=request.form['mod_del']
 		sub1=request.form['inputname']
 		sub2=request.form['num']
 		sub3=request.form['nu']
 		back=request.form['pe']
 		try:
 			addsubject(usn,sub1,sub2,sub3,back)
-			return render_template('/addsubject.html',status="ok")
+			return render_template('/addsubject.html',status="ok",data=lst,lenght=len(lst))
 		except Exception as e:
-			return render_template('/addsubject.html',status="error")
+			return render_template('/addsubject.html',status="error",data=lst,lenght=len(lst))
 
-	return render_template('/addsubject.html',status="")
+	return render_template('/addsubject.html',status="",data=lst,lenght=len(lst))
 
 @app.route('/add_student',methods=["POST","GET"])
 def add_student():
@@ -50,6 +51,8 @@ def add_student():
 		add=request.form['add']
 		mail=request.form['exampleInputEmail1']
 		phone=request.form['num']
+		if len(str(phone))!=10:
+			return render_template('add_student.html',status="Phone")
 
 		print(request.form)
 		add=request.form['add']
@@ -80,8 +83,10 @@ def moderator():
 		email=request.form['exampleInputEmail1']
 		phone=request.form['num']
 		print(type(phone),"****************************")
+		if len(str(phone))!=10:
+			return render_template('add_mod.html',msg="phone")
 		try:
-			addmoderator(idd,name,paswd,email,phone)
+			addmoderator(idd,name,paswd,str(email),phone)
 			return render_template('add_mod.html',msg="success")
 		except Exception as e:
 			print(e,"========================================")
@@ -98,6 +103,8 @@ def moderator():
 
 @app.route('/addfeedetails',methods=["POST","GET"])
 def add_fee_details():
+	lst=viewdatastud()
+
 	if request.method=="POST":
 		usn=request.form['usnno']
 		ammt=int(request.form['inputname'])
@@ -108,15 +115,47 @@ def add_fee_details():
 		try:
 			addfeedetails(usn,int(ammt),sts,str(date),penalty)
 			print(type(usn),type(ammt),type(sts),type(date),type(penalty))
-			return render_template('addfeedetails.html',status="success")
+			return render_template('addfeedetails.html',status="success",data=lst,lenght=len(lst))
 
 		except Exception as e:
 			print(type(usn),type(ammt),type(sts),type(date),type(penalty))
 			print(e,"============================")
-			return render_template('addfeedetails.html',status="error")
+			return render_template('addfeedetails.html',status="error",data=lst,lenght=len(lst))
 
 			
-	return render_template('addfeedetails.html',status="get")
+	return render_template('addfeedetails.html',status="get",data=lst,lenght=len(lst))
+
+@app.route('/add_marks',methods=["POST","GET"])
+def addmarks():
+	lst=viewdatastud()
+	if request.method=="GET":
+		return render_template('addmarks.html',status="get",data=lst,lenght=len(lst))
+
+	print("testing==========")
+	usn=request.form['usnno']
+	
+	iat1=request.form['num1']
+	iat2=request.form['num2']
+	iat3=request.form['num3']
+	ex=int(request.form['ex'])
+	avg=(int(iat1)+int(iat2)+int(iat3))
+	avg//=3
+	total=ex+avg
+	print("testing2=========")
+	try:
+		addmark(usn,int(iat1),int(iat2),int(iat3),int(ex),int(avg),int(total))
+		return render_template('addmarks.html',status='success',data=lst,lenght=len(lst))
+		
+	except Exception as e:
+		print("Exception:",e)
+	else:
+		return render_template('addmarks.html',status="error",data=lst,lenght=len(lst))
+		
+
+
+
+	# return render_template('addmarks.html',status="POST",data=lst,lenght=len(lst))
+	
 
 
 @app.route('/moderator_section',methods=["POST","GET"])
@@ -130,7 +169,8 @@ def modesection():
 
 @app.route('/performance')
 def performance():
-	return render_template('performance.html')
+	lst=check_marks()
+	return render_template('performance.html',data=lst,lenght=len(lst))
 
 @app.route('/view_data')
 def view_stud():
@@ -159,7 +199,7 @@ def view_std_data():
 
 @app.route('/viewmoddata',methods=["POST","GET"])
 def view_mod_data():
-	print("check1==================================",viewmoderator())
+	# print("check1==================================",viewmoderator())
 
 	if request.method=="POST":
 		mod=request.form['mod_del']

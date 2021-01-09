@@ -21,7 +21,12 @@ body
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 </nav>
 <div><center>Moderator Section</center></div>
-<div class="container">
+
+
+<div class="row mx-5 mt-5">
+  <div class="col-md-6">
+
+    <div class="container">
     
     <form>
       <div class="col-4">
@@ -33,16 +38,39 @@ body
          <button type="submit" formmethod="get" formaction="/addfeedetails"> ADD FEE DETAILS</button>
         <!-- </a> -->
         
-        <button type="submit" formmethod="get" formaction="/view_data">VIEW</button>
+        
       </div>
       <div class="col-4">
+        <button type="submit" formmethod="get" formaction="/add_marks">Update Marks</button>
+      </div>
+
+      <div class="col-4">
         <button type="submit" formmethod="get" formaction="/addsubject">ADD SUBJECTS</button>
-        <button type="submit" formaction="/">LOGOUT</button>
+        
       </div>
     </form>
     
     </div>
-  
+  </div>
+  <div class="col-md-6">
+    <div class="container">
+    <form action="/">
+      <div class="col-4">
+        <button type="submit" formaction="/view_std_data">VIEW STUDENT DETAILS</button>
+        <button type="submit" formaction="/view_fees_details">VIEW FEES DETAILS</button>
+      </div>
+      <div class="col-4">
+        <button type="submit" formaction="/view_sub_data">VIEW SUBJECTS</button>
+        <button type="submit" formaction="/performance">VIEW PERFORMANCE</button>
+      </div>
+      <div class="col-4">
+        <button type="submit" formaction="/moderator_section">BACK</button>
+        <button type="submit">LOGOUT</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
 	
 </body>
 </html>
