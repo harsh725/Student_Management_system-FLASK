@@ -1,6 +1,7 @@
-# FOREGIN KEY, triger ,phone digit, cascade,regex
+# FOREGIN KEY, triger , cascade
 
 import sqlite3
+
 def studentData():
     con=sqlite3.connect("student.db")
     cur=con.cursor()
@@ -15,9 +16,9 @@ studentData()
 def addstdrec(usn,name,mobileno,address,email):
     con=sqlite3.connect("student.db")
     cur=con.cursor()
-    print("testtttt========",type(usn),type(name),type(mobileno),type(address),type(email))
+    # print("testtttt========",type(usn),type(name),type(mobileno),type(address),type(email))
     cur.execute("""INSERT INTO student VALUES (:usn,:name,:mobileno,:address,:email)""",{'usn':usn,'name':name,'mobileno':mobileno,'address':address,'email':email})
-    print("000000000000000000000000000")
+    # print("000000000000000000000000000")
     con.commit()
     con.close()
 
@@ -29,11 +30,12 @@ def viewdatastud():
     con.close()
     return rows
 # addstdrec("1CR18CS","harsh","875814979","india","a@b.com")
-print(viewdatastud(),"------------------")
+# print(viewdatastud(),"------------------")
 
 def deletestdrec(usn):
     con=sqlite3.connect("student.db")
     cur=con.cursor()
+    con.execute("""PRAGMA foreign_keys = ON""")
     cur.execute("DELETE FROM student WHERE usn=:usn",{'usn':usn})
     con.commit()
     con.close()
@@ -103,11 +105,13 @@ def updaterecmoderator(idm,namem,password,emailm,contactno):
 def feedata():
     con=sqlite3.connect("student.db")
     cur=con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS fee(usn TEXT PRIMARY KEY,
+    con.execute("""PRAGMA foreign_keys = ON""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS fee(usn TEXT,
     amount TEXT,
     status TEXT,
     payment_date TEXT,
-    penalty TEXT)""")
+    penalty TEXT,
+    foreign key (usn) references student(usn) ON DELETE CASCADE)""")
     con.commit()
     con.close()
 
@@ -149,11 +153,13 @@ def updatefeerec(usn,amount,status,date,penalty):
 def subjectdata():
      con=sqlite3.connect("student.db")
      cur=con.cursor()
+     con.execute("""PRAGMA foreign_keys = ON""")
      cur.execute("""CREATE TABLE IF NOT EXISTS subject(usn TEXT PRIMARY KEY,
      sub1 TEXT,
      sub2 TEXT,
      sub3 TEXT,
-     backlogs TEXT)""")
+     backlogs TEXT,
+     foreign key (usn) references student(usn) ON DELETE CASCADE)""")
      con.commit()
      con.close()
 
@@ -195,15 +201,29 @@ def updaterecsubject(usn,sub1,sub2,sub3,backlogs):
 def performancedata():
      con=sqlite3.connect("student.db")
      cur=con.cursor()
+     cur.execute("""PRAGMA foreign_keys = ON""")
      cur.execute("""CREATE TABLE IF NOT EXISTS performance(usn TEXT PRIMARY KEY,
      iat1 INTEGER,
      iat2 INTEGER,
      iat3 INTEGER,
-     AVG REAL,
-     external REAL,
-     total INTEGER)""")
+     AVG INTEGER,
+     external INTEGER,
+     total INTEGER,
+     foreign key (usn) references student(usn) ON DELETE CASCADE)""")
      con.commit()
      con.close()
-
-
 performancedata()
+def addmark(usn,iat1,iat2,iat3,ex,avg,total):
+    con=sqlite3.connect("student.db")
+    cur=con.cursor()
+    cur.execute("""INSERT INTO performance VALUES(:usn,:iat1,:iat2,:iat3,:external,:AVG,:total)""",{'usn':usn,'iat1':iat1,'iat2':iat2,'iat3':iat3,'external':ex,'AVG':avg,'total':total})
+    con.commit()
+    con.close()
+
+def check_marks():
+    con=sqlite3.connect("student.db")
+    cur=con.cursor()
+    cur.execute("SELECT * FROM performance")
+    rows=cur.fetchall()
+    con.close()
+    return rows
