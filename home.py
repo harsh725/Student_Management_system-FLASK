@@ -125,6 +125,34 @@ def add_fee_details():
 			
 	return render_template('addfeedetails.html',status="get",data=lst,lenght=len(lst))
 
+
+@app.route('/update',methods=['GET','POST'])
+def update():
+	lst=viewdatastud()
+	try:
+		usn=request.form['usnno']
+		iat1=request.form['num1']
+		iat2=request.form['num2']
+		iat3=request.form['num3']
+		ex=int(request.form['ex'])
+		avg=(int(iat1)+int(iat2)+int(iat3))
+		# avg=0
+		print(ex,avg)
+		# avg//=3
+		total=0
+		print("testing2=========")
+	
+		updatemark(usn,int(iat1),int(iat2),int(iat3),int(ex),int(avg),int(total))
+		return render_template('addmarks.html',status='success',data=lst,lenght=len(lst))
+		
+	except Exception as e:
+		print("Exception:",e)
+	else:
+		return render_template('addmarks.html',status="error",data=lst,lenght=len(lst))
+		
+
+
+
 @app.route('/add_marks',methods=["POST","GET"])
 def addmarks():
 	lst=viewdatastud()
@@ -132,19 +160,19 @@ def addmarks():
 		return render_template('addmarks.html',status="get",data=lst,lenght=len(lst))
 
 	print("testing==========")
-	usn=request.form['usnno']
-	
-	iat1=request.form['num1']
-	iat2=request.form['num2']
-	iat3=request.form['num3']
-	ex=int(request.form['ex'])
-	avg=(int(iat1)+int(iat2)+int(iat3))
-	# avg=0
-	print(ex,avg)
-	# avg//=3
-	total=0
-	print("testing2=========")
 	try:
+		usn=request.form['usnno']
+		iat1=request.form['num1']
+		iat2=request.form['num2']
+		iat3=request.form['num3']
+		ex=int(request.form['ex'])
+		avg=(int(iat1)+int(iat2)+int(iat3))
+		# avg=0
+		print(ex,avg)
+		# avg//=3
+		total=0
+		print("testing2=========")
+	
 		addmark(usn,int(iat1),int(iat2),int(iat3),int(ex),int(avg),int(total))
 		return render_template('addmarks.html',status='success',data=lst,lenght=len(lst))
 		

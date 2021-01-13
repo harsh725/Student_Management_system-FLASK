@@ -223,7 +223,7 @@ def trigger():
         UPDATE performance
         set AVG=(new.iat1+new.iat2+new.iat3)/3 where new.usn=usn;
         UPDATE performance
-        set total=new.AVG+new.external where new.usn=usn;
+        set total=(new.AVG/3)+new.external where new.usn=usn;
         -- where usn=new.usn
         END""")
     con.commit()
@@ -245,3 +245,13 @@ def check_marks():
     rows=cur.fetchall()
     con.close()
     return rows
+
+def updatemark(usn,iat1,iat2,iat3,ex,avg,total):
+    con=sqlite3.connect("student.db")
+    cur=con.cursor()
+    cur.execute("DELETE FROM performance WHERE usn=:usn",{'usn':usn})
+    con.commit()
+    con.close()
+    addmark(usn,iat1,iat2,iat3,ex,avg,total)
+
+
