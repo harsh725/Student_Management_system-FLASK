@@ -14,22 +14,57 @@ body
 {
 	background-color:#00FFFF;
 }
+.mod_box{
+	border-radius: 10px;
+	border: 2px solid black;
+	padding : 50px;
+	margin-top: 100px;
+	background: #0000ff;
+	box-shadow: 5px 10px 100px #0000aa;
+}
 </style>	
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 </nav>
-<form action="/" method="get">
-    <div><center>Admin Section</center></div>
-    <center><button type="submit" formaction="/add_moderator">ADD MODERATOR</button></center>
-</form>
+<div class="container">
+	<div><center>Admin Section</center></div>
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<div class="mod_box">
+				<div class="row">
+					<div class="col-md-6">
+						<form action="/" method="get">
+							<center><button type="submit" formaction="/add_moderator">ADD MODERATOR</button></center>
+						</form>
+					</div>
+					<div class="col-md-6">
+						<form action="/viewmoddata" method="get">
+							<center><button type="submit">VIEW MODERATOR</button></center>
+						</form>
+					</div>
+				</div>
+			
+			
+			<div class="row mt-5">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<form action="/" method="get">
+						<center><button type="submit" formaction="/" >LOGOUT</button></center>
+					</form>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+			
+			</div>
+			
+		</div>
+		<div class="col-md-3">
 
-<form action="/viewmoddata" method="get">
-    <center><button type="submit">VIEW MODERATOR</button></center>
-</form>
-<form action="/" method="get">
-    <center><button type="submit" formaction="/" >LOGOUT</button></center>
-</form>
+		</div>
+	</div>
+	
 </body>
 </html>

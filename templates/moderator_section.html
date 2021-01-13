@@ -14,6 +14,9 @@ body
 {
 	background-color:#00FFFF;
 }
+.col-4{
+  padding: 10px;
+}
 </style>	
 </head>
 <body>
@@ -31,9 +34,11 @@ body
     <form>
       <div class="col-4">
         <button type="submit" formmethod="get" formaction="/add_student" >ADD STUDENT</button>
-        <button type="submit" formmethod="get" formaction="/performance">PERFORMANCE ANALYSIS</button>
       </div>
+      <div class="col-4">
+        <button type="submit" formmethod="get" formaction="/performance">PERFORMANCE ANALYSIS</button>
 
+      </div>
       <div class="col-4">
          <button type="submit" formmethod="get" formaction="/addfeedetails"> ADD FEE DETAILS</button>
         <!-- </a> -->
@@ -57,14 +62,20 @@ body
     <form action="/">
       <div class="col-4">
         <button type="submit" formaction="/view_std_data">VIEW STUDENT DETAILS</button>
+      </div>
+      <div class="col-4">
         <button type="submit" formaction="/view_fees_details">VIEW FEES DETAILS</button>
+
       </div>
       <div class="col-4">
         <button type="submit" formaction="/view_sub_data">VIEW SUBJECTS</button>
-        <button type="submit" formaction="/performance">VIEW PERFORMANCE</button>
       </div>
       <div class="col-4">
-        <button type="submit" formaction="/moderator_section">BACK</button>
+        <button type="submit" formaction="/performance">VIEW PERFORMANCE</button>
+
+      </div>
+      <div class="col-4">
+        
         <button type="submit">LOGOUT</button>
       </div>
     </div>
