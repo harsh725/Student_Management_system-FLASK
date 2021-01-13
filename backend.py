@@ -35,7 +35,8 @@ def viewdatastud():
 def deletestdrec(usn):
     con=sqlite3.connect("student.db")
     cur=con.cursor()
-    con.execute("""PRAGMA foreign_keys = ON""")
+    cur.execute("""PRAGMA foreign_keys = ON""")
+    con.commit()
     cur.execute("DELETE FROM student WHERE usn=:usn",{'usn':usn})
     con.commit()
     con.close()
@@ -213,10 +214,27 @@ def performancedata():
      con.commit()
      con.close()
 performancedata()
+
+def trigger():
+    con=sqlite3.connect("student.db")
+    cur=con.cursor()
+    cur.execute("""CREATE TRIGGER IF NOT EXISTS calculate AFTER INSERT ON performance
+        BEGIN
+        UPDATE performance
+        set AVG=(new.iat1+new.iat2+new.iat3)/3 where new.usn=usn;
+        UPDATE performance
+        set total=(new.AVG/3)+new.external where new.usn=usn;
+        -- where usn=new.usn
+        END""")
+    con.commit()
+    con.close()
+
+
+trigger()
 def addmark(usn,iat1,iat2,iat3,ex,avg,total):
     con=sqlite3.connect("student.db")
     cur=con.cursor()
-    cur.execute("""INSERT INTO performance VALUES(:usn,:iat1,:iat2,:iat3,:external,:AVG,:total)""",{'usn':usn,'iat1':iat1,'iat2':iat2,'iat3':iat3,'external':ex,'AVG':avg,'total':total})
+    cur.execute("""INSERT INTO performance VALUES(:usn,:iat1,:iat2,:iat3,:AVG,:external,:total)""",{'usn':usn,'iat1':iat1,'iat2':iat2,'iat3':iat3,'external':ex,'AVG':avg,'total':total})
     con.commit()
     con.close()
 
@@ -227,3 +245,13 @@ def check_marks():
     rows=cur.fetchall()
     con.close()
     return rows
+
+def updatemark(usn,iat1,iat2,iat3,ex,avg,total):
+    con=sqlite3.connect("student.db")
+    cur=con.cursor()
+    cur.execute("DELETE FROM performance WHERE usn=:usn",{'usn':usn})
+    con.commit()
+    con.close()
+    addmark(usn,iat1,iat2,iat3,ex,avg,total)
+
+

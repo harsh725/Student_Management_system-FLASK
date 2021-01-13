@@ -48,7 +48,7 @@ body
 
   <div class="form-group">
     <label for="num">IAT-1</label>
-    <input type="number" min="0" class="form-control" name="num1" placeholder="Enter IAT-1 Marks">
+    <input type="number" min="0" class="form-control" name="num1" placeholder="Enter IAT-1 Marks" value="">
 
     <label for="num">IAT-2</label>
     <input type="number" min="0" class="form-control" name="num2" placeholder="Enter IAT-2 Marks">
@@ -62,6 +62,7 @@ body
   </div>
   <form>
   <button type="submit" formaction="/add_marks" formmethod="POST">ADD</button>
+  <button type="submit" formaction="/update" formmethod="POST">UPDATE</button>
   <button type="submit" formaction="/moderator_section" formmethod="get">Back</button>
   </form>
      </div>
