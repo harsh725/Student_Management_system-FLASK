@@ -22,14 +22,14 @@ body
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Warning!</strong> This student already exist.
   </div>
-  {% elif status=="Phone" %}
-      <div class="alert alert-danger alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Warning!</strong> Invalid Phone number.
-  </div>
-    {% elif status=="ok"%}
+  {% elif status=="update" %}
       <div class="alert alert-success">
-  <strong>Success!</strong> Student has been added.
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> Marks has been Updated.
+  </div>
+    {% elif status=="success"%}
+      <div class="alert alert-success">
+  <strong>Success!</strong> Marks has been added.
 </div>
     {% endif %}
 
@@ -48,16 +48,16 @@ body
 
   <div class="form-group">
     <label for="num">IAT-1</label>
-    <input type="number" min="0" class="form-control" name="num1" placeholder="Enter IAT-1 Marks" value="">
+    <input type="number" min="0" max="40" class="form-control" name="num1" placeholder="Enter IAT-1 Marks" value="">
 
     <label for="num">IAT-2</label>
-    <input type="number" min="0" class="form-control" name="num2" placeholder="Enter IAT-2 Marks">
+    <input type="number" min="0" max="40" class="form-control" name="num2" placeholder="Enter IAT-2 Marks">
     
     <label for="num">IAT-3</label>
-    <input type="number" min="0" class="form-control" name="num3" placeholder="Enter IAT-3 Marks">
+    <input type="number" min="0" max="40" class="form-control" name="num3" placeholder="Enter IAT-3 Marks">
     
     <label for="num">External</label>
-    <input type="number" min="0" class="form-control" name="ex" placeholder="Enter External Marks">
+    <input type="number" min="0" max="60" class="form-control" name="ex" placeholder="Enter External Marks">
     
   </div>
   <form>

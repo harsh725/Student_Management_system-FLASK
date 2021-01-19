@@ -107,7 +107,7 @@ def feedata():
     con=sqlite3.connect("student.db")
     cur=con.cursor()
     con.execute("""PRAGMA foreign_keys = ON""")
-    cur.execute("""CREATE TABLE IF NOT EXISTS fee(usn TEXT,
+    cur.execute("""CREATE TABLE IF NOT EXISTS fee(usn TEXT primary key,
     amount TEXT,
     status TEXT,
     payment_date TEXT,
@@ -143,11 +143,10 @@ def deletefeerec(usn):
 
  
 def updatefeerec(usn,amount,status,date,penalty):
-     con=sqlite3.connect("student.db")
-     cur=con.cursor()
-     cur.execute("UPDATE fee SET amount=:amount,status=:status,date=:date,penalty=:penalty WHERE usn=:usn",{'amount':amount,'status':status,'date':date,'penalty':penalty,'usn':usn})
-     con.commit()
-     con.close()
+     deletefeerec(usn)
+     # cur.execute("UPDATE fee SET amount=:amount,status=:status,date=:date,penalty=:penalty WHERE usn=:usn",{'amount':amount,'status':status,'date':date,'penalty':penalty,'usn':usn})
+     addfeedetails(usn,amount,status,date,penalty)
+     
 
 
 

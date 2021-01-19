@@ -101,6 +101,31 @@ def moderator():
 	return render_template('add_mod.html',msg="GET")
 
 
+@app.route('/updatefee',methods=["POST","GET"])
+def updatefee():
+	lst=viewdatastud()
+
+	
+	usn=request.form['usnno']
+	ammt=int(request.form['inputname'])
+	sts=request.form['num']
+	date=request.form['add']
+	penalty=request.form['pe']
+
+	try:
+		updatefeerec(usn,int(ammt),sts,str(date),penalty)
+		print(type(usn),type(ammt),type(sts),type(date),type(penalty))
+		return render_template('addfeedetails.html',status="success",data=lst,lenght=len(lst))
+
+	except Exception as e:
+		print(type(usn),type(ammt),type(sts),type(date),type(penalty))
+		print(e,"============================")
+		return render_template('addfeedetails.html',status="error",data=lst,lenght=len(lst))
+
+			
+	return render_template('addfeedetails.html',status="get",data=lst,lenght=len(lst))
+
+
 @app.route('/addfeedetails',methods=["POST","GET"])
 def add_fee_details():
 	lst=viewdatastud()
@@ -143,7 +168,7 @@ def update():
 		print("testing2=========")
 	
 		updatemark(usn,int(iat1),int(iat2),int(iat3),int(ex),int(avg),int(total))
-		return render_template('addmarks.html',status='success',data=lst,lenght=len(lst))
+		return render_template('addmarks.html',status='update',data=lst,lenght=len(lst))
 		
 	except Exception as e:
 		print("Exception:",e)
